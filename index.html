@@ -42,19 +42,15 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
-  <!-- GSAP & Lenis -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
-  
+
   <!-- Google Analytics Placeholder -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'UA-XXXXXXXXX-X');
   </script>
@@ -85,6 +81,15 @@
 
 <body>
 
+  <div id="earthIntro" class="earth-intro" role="presentation">
+    <canvas id="earthCanvas"></canvas>
+    <div class="ei-text">
+      <span class="ei-tag">TecnoPatch</span>
+      <p class="ei-line">Desde Guadalajara, conectamos cada punto con el resto del mundo</p>
+    </div>
+    <button type="button" class="ei-skip" id="eiSkip">Omitir <span aria-hidden="true">&rarr;</span></button>
+  </div>
+
 
   <nav id="nav">
     <a href="#" class="logo"><img
@@ -94,28 +99,29 @@
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#marcas">Marcas</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:0.75rem">
-  <a href="#contacto" class="ncta">Cotizar &rarr;</a>
-  <a href="docs/TecnoPatch_Catalogo_CARTA_2026.pdf" 
-     download="TecnoPatch_Catalogo_Servicios_2026.pdf"
-     title="Descargar Catálogo"
-     style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:8px;background:rgba(255,183,3,0.12);border:1px solid rgba(255,183,3,0.35);color:#FFB703;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;font-family:inherit;"
-     onmouseover="this.style.background='rgba(255,183,3,0.22)';this.style.borderColor='#FFB703'"
-     onmouseout="this.style.background='rgba(255,183,3,0.12)';this.style.borderColor='rgba(255,183,3,0.35)'">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-      <polyline points="7 10 12 15 17 10"/>
-      <line x1="12" y1="15" x2="12" y2="3"/>
-    </svg>
-    Catálogo
-  </a>
+    <div class="nav-actions">
+      <a href="#contacto" class="ncta">Cotizar</a>
+      <a href="docs/TecnoPatch_Catalogo_CARTA_2026.pdf" download="TecnoPatch_Catalogo_Servicios_2026.pdf"
+        title="Descargar Catálogo"
+        style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:8px;background:rgba(255,183,3,0.12);border:1px solid rgba(255,183,3,0.35);color:#FFB703;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;font-family:inherit;"
+        onmouseover="this.style.background='rgba(255,183,3,0.22)';this.style.borderColor='#FFB703'"
+        onmouseout="this.style.background='rgba(255,183,3,0.12)';this.style.borderColor='rgba(255,183,3,0.35)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Catálogo
+      </a>
       <button class="thbtn" id="thbtn" onclick="toggleTheme()" aria-label="Cambiar tema">
         <span class="thico moon">🌙</span>
         <span class="thico sun">☀️</span>
       </button>
-      <button class="hbg" id="hbg" onclick="tmob()" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+      <button class="hbg" id="hbg" onclick="tmob()" aria-label="Menu" aria-expanded="false"
+        aria-controls="mnav"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -124,76 +130,33 @@
     <a href="#marcas" onclick="cmob()">Marcas</a>
     <a href="#nosotros" onclick="cmob()">Nosotros</a>
     <a href="#faq" onclick="cmob()">FAQ</a>
-    <a href="#contacto" class="ncta" onclick="cmob()">Solicitar Cotizaci&oacute;n &rarr;</a>
+    <a href="proyectos.html" onclick="cmob()">Proyectos</a>
+    <a href="#contacto" class="ncta" onclick="cmob()">Solicitar Cotizaci&oacute;n</a>
   </div>
 
   <section class="hero" id="inicio">
-    <canvas id="cv"></canvas>
-    <div class="hglow"></div>
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
+    <picture class="hero-media" aria-hidden="true">
+      <img src="img/hero-telecomunicaciones.png" alt="" fetchpriority="high">
+    </picture>
+    <div class="hero-shade"></div>
     <div class="hc">
-      <div class="pill"><span class="ldot"></span>Telecomunicaciones &middot; Guadalajara, Jalisco</div>
       <h1>
-        <span class="ln"><span>El futuro</span></span>
-        <span class="ln"><span>de tu <i>conectividad</i></span></span>
-        <span class="ln"><span>comienza aqu&iacute;</span></span>
+        <span class="ln"><span>Soluciones integrales en</span></span>
+        <span class="ln"><span><i>telecomunicaciones</i> y</span></span>
+        <span class="ln"><span>redes empresariales</span></span>
       </h1>
-      <p class="hp">Instalamos, dise&ntilde;amos y mantenemos infraestructura tecnol&oacute;gica de nivel empresarial.
-        Seguridad, redes, telecomunicaciones y m&aacute;s &mdash; todo bajo un mismo techo.</p>
+      <p class="hp">Dise&ntilde;amos, instalamos y mantenemos redes, cableado estructurado, CCTV, telefon&iacute;a IP y
+        control de acceso para empresas, oficinas, comercios e industria.</p>
       <div class="hbtns">
         <a href="#contacto" class="bw">Solicitar Cotizaci&oacute;n</a>
         <a href="#servicios" class="bg">Explorar Servicios &darr;</a>
       </div>
       <div class="stats" id="sr">
-        <div class="si"><span class="sn" id="c1">200+</span><span class="sl">Proyectos</span></div>
         <div class="si"><span class="sn" id="c2">8+</span><span class="sl">A&ntilde;os de experiencia</span></div>
         <div class="si"><span class="sn">24/7</span><span class="sl">Soporte t&eacute;cnico</span></div>
-        <div class="si"><span class="sn" id="c3">98%</span><span class="sl">Satisfacci&oacute;n</span></div>
       </div>
     </div>
-    <div class="scue"><span>Scroll</span>
-      <div class="sline"></div>
-    </div>
   </section>
-
-  <div class="ticker">
-    <div class="ttrack">
-      <span class="titem"><span class="tsep"></span>CCTV &amp; Videovigilancia</span>
-      <span class="titem"><span class="tsep"></span>Cableado Estructurado</span>
-      <span class="titem"><span class="tsep"></span>Control de Acceso</span>
-      <span class="titem"><span class="tsep"></span>Telef&oacute;n&iacute;a IP &middot; VoIP</span>
-      <span class="titem"><span class="tsep"></span>Videoporteros</span>
-      <span class="titem"><span class="tsep"></span>Sistemas de Alarma</span>
-      <span class="titem"><span class="tsep"></span>Desarrollo Web</span>
-      <span class="titem"><span class="tsep"></span>Mantenimiento de C&oacute;mputo</span>
-      <span class="titem"><span class="tsep"></span>CCTV &amp; Videovigilancia</span>
-      <span class="titem"><span class="tsep"></span>Cableado Estructurado</span>
-      <span class="titem"><span class="tsep"></span>Control de Acceso</span>
-      <span class="titem"><span class="tsep"></span>Telef&oacute;n&iacute;a IP &middot; VoIP</span>
-      <span class="titem"><span class="tsep"></span>Videoporteros</span>
-      <span class="titem"><span class="tsep"></span>Sistemas de Alarma</span>
-      <span class="titem"><span class="tsep"></span>Desarrollo Web</span>
-      <span class="titem"><span class="tsep"></span>Mantenimiento de C&oacute;mputo</span>
-      <span class="titem"><span class="tsep"></span>CCTV &amp; Videovigilancia</span>
-      <span class="titem"><span class="tsep"></span>Cableado Estructurado</span>
-      <span class="titem"><span class="tsep"></span>Control de Acceso</span>
-      <span class="titem"><span class="tsep"></span>Telef&oacute;n&iacute;a IP &middot; VoIP</span>
-      <span class="titem"><span class="tsep"></span>Videoporteros</span>
-      <span class="titem"><span class="tsep"></span>Sistemas de Alarma</span>
-      <span class="titem"><span class="tsep"></span>Desarrollo Web</span>
-      <span class="titem"><span class="tsep"></span>Mantenimiento de C&oacute;mputo</span>
-      <span class="titem"><span class="tsep"></span>CCTV &amp; Videovigilancia</span>
-      <span class="titem"><span class="tsep"></span>Cableado Estructurado</span>
-      <span class="titem"><span class="tsep"></span>Control de Acceso</span>
-      <span class="titem"><span class="tsep"></span>Telef&oacute;n&iacute;a IP &middot; VoIP</span>
-      <span class="titem"><span class="tsep"></span>Videoporteros</span>
-      <span class="titem"><span class="tsep"></span>Sistemas de Alarma</span>
-      <span class="titem"><span class="tsep"></span>Desarrollo Web</span>
-      <span class="titem"><span class="tsep"></span>Mantenimiento de C&oacute;mputo</span>
-    </div>
-  </div>
 
   <section class="services" id="servicios">
     <div class="shd">
@@ -201,135 +164,146 @@
         <span class="tag">Nuestros servicios</span>
         <h2 class="h2" style="margin-top:.7rem">Soluciones que<br><i>protegen</i> y conectan</h2>
       </div>
-      <div class="rvr">
+      <div class="rvr" style="display:flex;align-items:center;gap:1.6rem;justify-content:space-between">
         <p class="sub">Desde la instalaci&oacute;n inicial hasta el soporte continuo. Cubrimos cada aspecto de tu
           infraestructura con equipos certificados y garant&iacute;a total en mano de obra.</p>
+        <div class="node3d" aria-hidden="true">
+          <div class="n3ring n3ring-a"></div>
+          <div class="n3ring n3ring-b"></div>
+          <div class="n3ring n3ring-c"></div>
+          <div class="n3core"></div>
+        </div>
       </div>
     </div>
 
-    <div class="sgrid">
+    <div class="chrail" aria-hidden="true">
+      <span class="chrail-line"></span>
+      <button class="chrail-item" data-target="ch-1" aria-label="Cap&iacute;tulo 1"><i></i></button>
+      <button class="chrail-item" data-target="ch-2" aria-label="Cap&iacute;tulo 2"><i></i></button>
+      <button class="chrail-item" data-target="ch-3" aria-label="Cap&iacute;tulo 3"><i></i></button>
+      <button class="chrail-item" data-target="ch-4" aria-label="Cap&iacute;tulo 4"><i></i></button>
+      <button class="chrail-item" data-target="ch-5" aria-label="Cap&iacute;tulo 5"><i></i></button>
+      <button class="chrail-item" data-target="ch-6" aria-label="Cap&iacute;tulo 6"><i></i></button>
+      <button class="chrail-item" data-target="ch-7" aria-label="Cap&iacute;tulo 7"><i></i></button>
+      <button class="chrail-item" data-target="ch-8" aria-label="Cap&iacute;tulo 8"><i></i></button>
+    </div>
 
-      <div class="scard s1 rv d1">
-        <div class="svis">
-          <img src="img/cctv.webp" alt="CCTV" class="svis-img" loading="lazy">
-          <div class="sbadge">CCTV</div>
-          <div class="sstatus"></div>
-          <div class="sbar"></div>
-        </div>
-        <div class="sbody">
-          <h3>CCTV y Videovigilancia</h3>
-          <p>C&aacute;maras HD e IP para hogares y empresas. Grabaci&oacute;n local y en nube con acceso remoto las 24
-            horas desde cualquier dispositivo.</p>
+    <div class="chapters">
 
+      <article class="chapter" id="ch-1">
+        <div class="chimg rvl">
+          <img src="img/cctv.webp" alt="CCTV y videovigilancia" loading="lazy">
         </div>
-      </div>
+        <div class="chtxt rvr">
+          <span class="chnum">01 / 08</span>
+          <span class="tag">Videovigilancia</span>
+          <h3 class="chtitle">Visibilidad total,<br>d&iacute;a y noche</h3>
+          <p class="chsub">C&aacute;maras HD e IP para hogares y empresas. Grabaci&oacute;n local y en nube con
+            acceso remoto las 24 horas desde cualquier dispositivo.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
 
-      <div class="scard s2 rv d2">
-        <div class="svis">
-          <img src="img/networks.webp" alt="Redes" class="svis-img" loading="lazy">
-          <div class="sbadge">Redes</div>
-          <div class="sstatus"></div>
-          <div class="sbar"></div>
+      <article class="chapter" id="ch-2">
+        <div class="chimg rvr">
+          <img src="img/networks.webp" alt="Cableado estructurado" loading="lazy">
         </div>
-        <div class="sbody">
-          <h3>Cableado Estructurado</h3>
-          <p>Instalaci&oacute;n de redes Cat5e, Cat6 y fibra &oacute;ptica certificadas bajo est&aacute;ndares ANSI/TIA
-            para m&aacute;ximo rendimiento.</p>
+        <div class="chtxt rvl">
+          <span class="chnum">02 / 08</span>
+          <span class="tag">Cableado estructurado</span>
+          <h3 class="chtitle">La base que nadie ve,<br>pero todos necesitan</h3>
+          <p class="chsub">Instalaci&oacute;n de redes Cat5e, Cat6 y fibra &oacute;ptica certificadas bajo
+            est&aacute;ndares ANSI/TIA para m&aacute;ximo rendimiento.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
 
+      <article class="chapter" id="ch-3">
+        <div class="chimg rvl">
+          <img src="img/access.webp" alt="Control de acceso" loading="lazy">
         </div>
-      </div>
+        <div class="chtxt rvr">
+          <span class="chnum">03 / 08</span>
+          <span class="tag">Control de acceso</span>
+          <h3 class="chtitle">Solo entra quien<br>t&uacute; autorizas</h3>
+          <p class="chsub">Biom&eacute;tricos, videoporteros, tarjetas de proximidad y barreras vehiculares para
+            gestionar el acceso de forma inteligente.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
 
-      <div class="scard s3 rv d3">
-        <div class="svis">
-          <img src="img/access.webp" alt="Acceso" class="svis-img" loading="lazy">
-          <div class="sbadge">Acceso</div>
-          <div class="sstatus"></div>
-          <div class="sbar"></div>
+      <article class="chapter" id="ch-4">
+        <div class="chimg rvr">
+          <img src="img/voip.webp" alt="Telefon&iacute;a IP / VoIP" loading="lazy">
         </div>
-        <div class="sbody">
-          <h3>Control de Acceso</h3>
-          <p>Biom&eacute;tricos, videoporteros, tarjetas de proximidad y barreras vehiculares para gestionar el acceso
-            de forma inteligente.</p>
+        <div class="chtxt rvl">
+          <span class="chnum">04 / 08</span>
+          <span class="tag">Telefon&iacute;a IP</span>
+          <h3 class="chtitle">Una l&iacute;nea<br>que no se corta</h3>
+          <p class="chsub">Centralitas virtuales y PBX para empresas. Comunicaci&oacute;n unificada con ahorro
+            real en costos telef&oacute;nicos mensuales.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
 
+      <article class="chapter" id="ch-5">
+        <div class="chimg rvl">
+          <img src="img/wifi.webp" alt="Enlaces de internet" loading="lazy">
         </div>
-      </div>
+        <div class="chtxt rvr">
+          <span class="chnum">05 / 08</span>
+          <span class="tag">Enlaces de internet</span>
+          <h3 class="chtitle">Cobertura donde antes<br>no llegaba nada</h3>
+          <p class="chsub">Redes inal&aacute;mbricas, enlaces punto a punto y cobertura WiFi de alto rendimiento
+            para oficinas, almacenes y grandes &aacute;reas.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
 
-      <div class="scard s4 rv d4">
-        <div class="svis">
-          <img src="img/voip.webp" alt="VoIP" class="svis-img" loading="lazy">
-          <div class="sbadge">VoIP</div>
-          <div class="sstatus"></div>
-          <div class="sbar"></div>
+      <article class="chapter" id="ch-6">
+        <div class="chimg rvr">
+          <img src="img/alarms.webp" alt="Sistemas de alarma" loading="lazy">
         </div>
-        <div class="sbody">
-          <h3>Telef&oacute;n&iacute;a IP / VoIP</h3>
-          <p>Centralitas virtuales y PBX para empresas. Comunicaci&oacute;n unificada con ahorro real en costos
-            telef&oacute;nicos mensuales.</p>
+        <div class="chtxt rvl">
+          <span class="chnum">06 / 08</span>
+          <span class="tag">Sistemas de alarma</span>
+          <h3 class="chtitle">La alerta llega<br>antes que el problema</h3>
+          <p class="chsub">Protecci&oacute;n residencial y empresarial con sensores de movimiento y
+            notificaci&oacute;n inmediata a tu tel&eacute;fono.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
 
+      <article class="chapter" id="ch-7">
+        <div class="chimg rvl">
+          <img src="img/webdev.webp" alt="Desarrollo web" loading="lazy">
         </div>
-      </div>
+        <div class="chtxt rvr">
+          <span class="chnum">07 / 08</span>
+          <span class="tag">Desarrollo web</span>
+          <h3 class="chtitle">Tu primera impresi&oacute;n,<br>siempre lista</h3>
+          <p class="chsub">Sitios web y aplicaciones a medida. Presencia digital moderna, r&aacute;pida y
+            optimizada para convertir visitantes en clientes.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
 
-      <div class="scard s5 rv d5">
-        <div class="svis">
-          <img src="img/wifi.webp" alt="WiFi" class="svis-img" loading="lazy">
-          <div class="sbadge">WiFi</div>
-          <div class="sstatus"></div>
-          <div class="sbar"></div>
+      <article class="chapter" id="ch-8">
+        <div class="chimg rvr">
+          <img src="img/support.png" alt="Mantenimiento de c&oacute;mputo" loading="lazy">
         </div>
-        <div class="sbody">
-          <h3>Enlaces de Internet</h3>
-          <p>Redes inal&aacute;mbricas, enlaces punto a punto y cobertura WiFi de alto rendimiento para oficinas,
-            almacenes y grandes &aacute;reas.</p>
-
+        <div class="chtxt rvl">
+          <span class="chnum">08 / 08</span>
+          <span class="tag">Mantenimiento</span>
+          <h3 class="chtitle">Un equipo detr&aacute;s<br>de cada equipo</h3>
+          <p class="chsub">Diagn&oacute;stico, limpieza, actualizaci&oacute;n y reparaci&oacute;n de equipos para
+            empresas y hogares. Servicio preventivo y correctivo.</p>
+          <a href="#contacto" class="chlink">Cotizar este servicio <span aria-hidden="true">&rarr;</span></a>
         </div>
-      </div>
-
-      <div class="scard s6 rv d6">
-        <div class="svis">
-          <img src="img/alarms.webp" alt="Alarmas" class="svis-img" loading="lazy">
-          <div class="sbadge">Alarmas</div>
-          <div class="sstatus"></div>
-          <div class="sbar" style="background:linear-gradient(90deg,transparent,var(--red),transparent)"></div>
-        </div>
-        <div class="sbody">
-          <h3>Sistemas de Alarma</h3>
-          <p>Protecci&oacute;n residencial y empresarial con sensores de movimiento y notificaci&oacute;n inmediata a tu
-            tel&eacute;fono.</p>
-
-        </div>
-      </div>
-
-      <div class="scard s7 rv d7">
-        <div class="svis">
-          <img src="img/webdev.webp" alt="Web Dev" class="svis-img" loading="lazy">
-          <div class="sbadge">Web Dev</div>
-          <div class="sstatus"></div>
-          <div class="sbar"></div>
-        </div>
-        <div class="sbody">
-          <h3>Desarrollo Web</h3>
-          <p>Sitios web y aplicaciones a medida. Presencia digital moderna, r&aacute;pida y optimizada para convertir
-            visitantes en clientes.</p>
-
-        </div>
-      </div>
-
-      <div class="scard s8 rv d8">
-        <div class="svis">
-          <img src="img/support.png" alt="Soporte" class="svis-img" loading="lazy">
-          <div class="sbadge">Soporte</div>
-          <div class="sstatus"></div>
-          <div class="sbar"></div>
-        </div>
-        <div class="sbody">
-          <h3>Mantenimiento de C&oacute;mputo</h3>
-          <p>Diagn&oacute;stico, limpieza, actualizaci&oacute;n y reparaci&oacute;n de equipos para empresas y hogares.
-            Servicio preventivo y correctivo.</p>
-
-        </div>
-      </div>
+      </article>
 
     </div>
+
   </section>
 
   <section class="brands" id="marcas">
@@ -345,6 +319,7 @@
           <div class="bc">&#128268; TP-Link</div>
           <div class="bc">&#128246; Ubiquiti</div>
           <div class="bc">&#127760; Cisco</div>
+          <div class="bc">&#128268; Condumex</div>
           <div class="bc">&#128737; Epcom</div>
           <div class="bc">&#128222; Grandstream</div>
           <div class="bc">&#9881; Mikrotik</div>
@@ -357,6 +332,7 @@
           <div class="bc">&#128268; TP-Link</div>
           <div class="bc">&#128246; Ubiquiti</div>
           <div class="bc">&#127760; Cisco</div>
+          <div class="bc">&#128268; Condumex</div>
           <div class="bc">&#128737; Epcom</div>
           <div class="bc">&#128222; Grandstream</div>
           <div class="bc">&#9881; Mikrotik</div>
@@ -369,6 +345,7 @@
           <div class="bc">&#128268; TP-Link</div>
           <div class="bc">&#128246; Ubiquiti</div>
           <div class="bc">&#127760; Cisco</div>
+          <div class="bc">&#128268; Condumex</div>
           <div class="bc">&#128737; Epcom</div>
           <div class="bc">&#128222; Grandstream</div>
           <div class="bc">&#9881; Mikrotik</div>
@@ -381,6 +358,7 @@
           <div class="bc">&#128268; TP-Link</div>
           <div class="bc">&#128246; Ubiquiti</div>
           <div class="bc">&#127760; Cisco</div>
+          <div class="bc">&#128268; Condumex</div>
           <div class="bc">&#128737; Epcom</div>
           <div class="bc">&#128222; Grandstream</div>
           <div class="bc">&#9881; Mikrotik</div>
@@ -448,7 +426,7 @@
           <p class="tq">"TecnoPatch instal&oacute; todo el sistema de c&aacute;maras en tiempo r&eacute;cord. El
             monitoreo remoto transform&oacute; por completo nuestra operaci&oacute;n."</p>
           <div class="tau">
-            <div class="av" style="background:linear-gradient(135deg,#4a9dff,#1a6fe0)">RM</div>
+            <div class="av" style="background:linear-gradient(135deg,#22e0c4,#0ea89a)">RM</div>
             <div><span class="an">Ingeniero Efrain Dueñas</span><span class="ar">Industrias Dueñas</span></div>
           </div>
         </div>
@@ -473,6 +451,30 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- SECCIÓN PROYECTOS -->
+  <section style="padding:80px 5%;text-align:center;border-top:1px solid rgba(0,180,216,0.15)">
+    <p
+      style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#00B4D8;margin-bottom:16px">
+      Portafolio
+    </p>
+    <h2
+      style="font-family:'Jost',sans-serif;font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:0;margin-bottom:16px;line-height:1.05">
+      Nuestro trabajo<br>
+      <em style="font-style:italic;color:#00B4D8">habla por sí solo</em>
+    </h2>
+    <p style="font-size:16px;color:#8899aa;max-width:480px;margin:0 auto 32px;line-height:1.7">
+      Más de 200 proyectos completados en Guadalajara y el Área Metropolitana con estándares internacionales.
+    </p>
+    <a href="proyectos.html"
+      style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:8px;background:#00B4D8;color:#0D1B2A;font-weight:700;font-size:15px;text-decoration:none;transition:all .2s">
+      Ver todos los proyectos
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="5" y1="12" x2="19" y2="12" />
+        <polyline points="12 5 19 12 12 19" />
+      </svg>
+    </a>
   </section>
 
   <section class="faq" id="faq">
@@ -543,9 +545,8 @@
           </div>
           <div class="ci">
             <div class="cii">&#9993;</div>
-            <div><strong><a
-                  href="mailto:serviciotecnopatch@gmail.com"
-                  style="color:var(--accent);text-decoration:none">serviciotecnopatch@gmail.com</a></strong><span>Respuesta
+            <div><strong><a href="mailto:contacto@tecnopatch.com.mx"
+                  style="color:var(--accent);text-decoration:none">contacto@tecnopatch.com.mx</a></strong><span>Respuesta
                 en menos de 24 h</span></div>
           </div>
           <div class="ci">
@@ -614,7 +615,8 @@
     </div>
     <div class="fb2">
       <span>&copy; 2026 TecnoPatch &mdash; Todos los derechos reservados.</span>
-      <a href="privacidad.html" style="color:var(--muted);text-decoration:none;font-size:0.8rem;">Aviso de Privacidad</a>
+      <a href="privacidad.html" style="color:var(--muted);text-decoration:none;font-size:0.8rem;">Aviso de
+        Privacidad</a>
       <span>Guadalajara, Jalisco, M&eacute;xico &#127474;&#127485;</span>
     </div>
   </footer>
@@ -629,6 +631,8 @@
   </a>
 
 
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/earth-intro.js"></script>
   <script src="js/main.js"></script>
 </body>
 

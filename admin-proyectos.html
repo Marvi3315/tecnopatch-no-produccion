@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Proyectos — TecnoPatch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1B2A;--navy2:#070f1a;--cian:#00B4D8;--cianl:#90E0EF;--gold:#FFB703;--white:#fff;--muted:#8899aa;--border:rgba(0,180,216,0.15);--card:rgba(255,255,255,0.04);--red:#E63946;--green:#2DC653}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:var(--navy);color:var(--white);min-height:100vh}
+#login-screen{position:fixed;inset:0;z-index:1000;background:var(--navy2);display:flex;align-items:center;justify-content:center}
+.login-box{width:100%;max-width:380px;padding:40px;background:var(--card);border:1px solid var(--border);border-radius:16px;text-align:center}
+.login-logo{font-size:36px;margin-bottom:8px}
+.login-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.login-sub{font-size:13px;color:var(--muted);margin-bottom:28px}
+.login-input{width:100%;padding:12px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--white);font-size:15px;font-family:'Jost',sans-serif;outline:none;transition:border-color .2s;margin-bottom:12px}
+.login-input:focus{border-color:var(--cian)}
+.login-btn{width:100%;padding:13px;border-radius:8px;background:var(--cian);color:var(--navy);font-size:15px;font-weight:700;font-family:'Jost',sans-serif;border:none;cursor:pointer;transition:all .2s}
+.login-btn:hover{background:var(--cianl)}
+.login-error{font-size:12px;color:var(--red);margin-top:8px;display:none}
+.admin-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:60px;background:rgba(13,27,42,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.admin-logo{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700}
+.admin-badge{padding:3px 10px;border-radius:100px;background:rgba(255,183,3,0.15);border:1px solid rgba(255,183,3,0.3);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.06em}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.view-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--cian);text-decoration:none;border:1px solid var(--border);padding:7px 14px;border-radius:8px;transition:all .2s}
+.view-link:hover{background:rgba(0,180,216,0.08)}
+.admin-logout{padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-family:'Jost',sans-serif;cursor:pointer;transition:all .2s}
+.admin-logout:hover{border-color:var(--red);color:var(--red)}
+.admin-main{max-width:1080px;margin:0 auto;padding:32px 24px}
+.tabs{display:flex;gap:4px;margin-bottom:32px;border-bottom:1px solid var(--border);padding-bottom:0}
+.tab-btn{padding:10px 22px;border-radius:8px 8px 0 0;border:none;background:transparent;color:var(--muted);font-size:14px;font-weight:500;font-family:'Jost',sans-serif;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab-btn.active{color:var(--cian);border-bottom-color:var(--cian);background:rgba(0,180,216,0.05)}
+.tab-btn:hover:not(.active){color:var(--white)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cian);display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:span 2}
+.form-label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.form-input,.form-select,.form-textarea{padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--white);font-size:14px;font-family:'Jost',sans-serif;outline:none;transition:border-color .2s;width:100%}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--cian)}
+.form-select option{background:var(--navy);color:var(--white)}
+.form-textarea{resize:vertical;min-height:80px}
+.emoji-picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.emoji-opt{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:transparent;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.emoji-opt:hover,.emoji-opt.selected{border-color:var(--cian);background:rgba(0,180,216,0.1)}
+.logo-dropzone{border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;min-height:100px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.logo-dropzone:hover,.logo-dropzone.dragover{border-color:var(--cian);background:rgba(0,180,216,0.05)}
+.logo-dropzone img{max-height:60px;max-width:120px;object-fit:contain;border-radius:6px}
+.logo-preview-name{font-size:12px;color:var(--muted)}
+.photos-dropzone{border:2px dashed var(--border);border-radius:12px;padding:36px 24px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px}
+.photos-dropzone:hover,.photos-dropzone.dragover{border-color:var(--cian);background:rgba(0,180,216,0.05)}
+.dz-icon{font-size:36px;margin-bottom:10px}
+.dz-title{font-size:15px;font-weight:600;margin-bottom:4px}
+.dz-sub{font-size:13px;color:var(--muted)}
+.dz-btn{display:inline-block;margin-top:12px;padding:8px 20px;border-radius:8px;background:var(--cian);color:var(--navy);font-weight:700;font-size:13px}
+.proj-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:24px}
+.proj-sel-card{padding:14px 16px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s}
+.proj-sel-card:hover{border-color:var(--cian);background:rgba(0,180,216,0.05)}
+.proj-sel-card.selected{border-color:var(--cian);background:rgba(0,180,216,0.1)}
+.proj-sel-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(0,180,216,0.1);flex-shrink:0}
+.proj-sel-info{flex:1;min-width:0}
+.proj-sel-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj-sel-count{font-size:11px;color:var(--muted);margin-top:2px}
+.proj-sel-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;transition:all .2s;flex-shrink:0}
+.proj-sel-card.selected .proj-sel-check{border-color:var(--cian);background:var(--cian);color:var(--navy)}
+.queue-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.queue-item{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--border)}
+.queue-item img{width:100%;height:100%;object-fit:cover;display:block}
+.queue-rm{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(230,57,70,0.85);border:none;color:var(--white);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.queue-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(13,27,42,0.85);padding:4px 6px}
+.queue-cap input{width:100%;background:transparent;border:none;color:var(--white);font-size:11px;font-family:'Jost',sans-serif;outline:none}
+.action-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-radius:10px;background:rgba(0,180,216,0.05);border:1px solid var(--border);margin-bottom:32px}
+.action-info{flex:1;font-size:13px;color:var(--muted)}
+.action-info strong{color:var(--white)}
+.btn-save{padding:10px 22px;border-radius:8px;background:var(--cian);color:var(--navy);font-weight:700;font-size:14px;font-family:'Jost',sans-serif;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.btn-save:hover:not(:disabled){background:var(--cianl);transform:translateY(-1px)}
+.btn-save:disabled{opacity:.45;cursor:not-allowed}
+.btn-cancel{padding:10px 18px;border-radius:8px;border:1px solid var(--border);color:var(--muted);font-size:13px;font-family:'Jost',sans-serif;background:transparent;cursor:pointer;transition:all .2s}
+.btn-cancel:hover{border-color:var(--red);color:var(--red)}
+.proj-gallery-block{margin-bottom:40px;padding:20px;border-radius:12px;background:var(--card);border:1px solid var(--border)}
+.pgh-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.pgh-left{display:flex;align-items:center;gap:12px}
+.pgh-logo{width:40px;height:40px;border-radius:8px;object-fit:contain;background:rgba(255,255,255,0.06);border:1px solid var(--border);padding:4px}
+.pgh-icon{width:40px;height:40px;border-radius:8px;background:rgba(0,180,216,0.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px}
+.pgh-name{font-size:16px;font-weight:700}
+.pgh-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.pgh-actions{display:flex;gap:8px;align-items:center}
+.btn-del-proj{padding:6px 14px;border-radius:6px;border:1px solid rgba(230,57,70,0.3);background:rgba(230,57,70,0.1);color:#E63946;font-size:12px;cursor:pointer;font-family:'Jost',sans-serif}
+/* ════════════════════════════════════════
+   DRAG & DROP — SWAP REAL + BADGE NÚMERO
+   FIX v2: event delegation + dataTransfer ID
+════════════════════════════════════════ */
+.pgh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.pgh-photo{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;border:2px solid transparent;cursor:grab;transition:border-color .18s,box-shadow .18s,transform .18s,opacity .18s;background:rgba(0,0,0,0.2);user-select:none;-webkit-user-select:none}
+.pgh-photo:active{cursor:grabbing}
+.pgh-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s,filter .2s;pointer-events:none}
+.pgh-photo:hover:not(.dragging) img{transform:scale(1.04)}
+.pgh-photo.dragging{opacity:.2;border-color:var(--cian) !important;box-shadow:0 0 0 3px rgba(0,180,216,0.4);transform:scale(0.92) rotate(-1.5deg);cursor:grabbing;z-index:10}
+.pgh-photo.swap-target{border-color:var(--gold) !important;box-shadow:0 0 0 3px rgba(255,183,3,0.55),0 8px 28px rgba(0,0,0,0.5);transform:scale(1.07);z-index:5}
+.pgh-photo.swap-target img{filter:brightness(0.4)}
+.pgh-photo.swap-target::after{content:'⇄';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:var(--gold);z-index:6;text-shadow:0 2px 10px rgba(0,0,0,0.95);pointer-events:none}
+.pgh-order-badge{position:absolute;top:6px;left:6px;z-index:7;min-width:26px;height:26px;padding:0 7px;border-radius:7px;background:rgba(5,12,24,0.9);border:1.5px solid rgba(0,180,216,0.55);color:var(--cian);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;pointer-events:none;backdrop-filter:blur(6px);transition:background .15s,border-color .15s,color .15s,transform .15s}
+.pgh-photo.swap-target .pgh-order-badge{background:rgba(255,183,3,0.25);border-color:var(--gold);color:var(--gold);transform:scale(1.15)}
+.pgh-photo-overlay{position:absolute;inset:0;background:rgba(13,27,42,0.72);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:4}
+.pgh-photo:hover:not(.dragging):not(.swap-target) .pgh-photo-overlay{opacity:1}
+.btn-del-ph{padding:5px 12px;border-radius:6px;border:1px solid rgba(230,57,70,0.4);background:rgba(230,57,70,0.15);color:#E63946;font-size:12px;font-weight:600;cursor:pointer;font-family:'Jost',sans-serif}
+.orden-save-bar{display:none;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding:10px 16px;border-radius:9px;background:rgba(255,183,3,0.07);border:1px solid rgba(255,183,3,0.3);font-size:13px;color:var(--gold);animation:slideUp .25s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.orden-save-bar.visible{display:flex}
+.btn-guardar-orden{padding:7px 18px;border-radius:7px;background:var(--gold);color:var(--navy);font-weight:700;font-size:13px;font-family:'Jost',sans-serif;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-guardar-orden:hover:not(:disabled){background:#e0a800;transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,183,3,0.35)}
+.btn-guardar-orden:disabled{opacity:.5;cursor:not-allowed}
+.btn-descartar-orden{padding:7px 14px;border-radius:7px;border:1px solid rgba(255,183,3,0.3);background:transparent;color:var(--gold);font-size:12px;font-family:'Jost',sans-serif;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-descartar-orden:hover{border-color:var(--gold);background:rgba(255,183,3,0.08)}
+.pgh-empty{font-size:13px;color:var(--muted);padding:20px;text-align:center;border:1px dashed var(--border);border-radius:8px}
+.btn-new-proj{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;border:1px dashed var(--border);background:transparent;color:var(--muted);font-size:13px;font-family:'Jost',sans-serif;cursor:pointer;transition:all .2s;margin-bottom:24px}
+.btn-new-proj:hover{border-color:var(--cian);color:var(--cian)}
+.loading-mini{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:var(--navy);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:24px;right:24px;z-index:999;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;background:var(--green);color:var(--navy);transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.error{background:var(--red);color:var(--white)}
+.upload-progress{margin-top:8px;display:none}
+.progress-bar{height:4px;border-radius:2px;background:var(--border);overflow:hidden;margin-bottom:4px}
+.progress-fill{height:100%;background:var(--cian);border-radius:2px;transition:width .3s}
+.progress-label{font-size:11px;color:var(--muted)}
+@media(max-width:768px){.admin-main{padding:20px 16px}.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:span 1}.pgh-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}}
+body,
+button,
+input,
+textarea,
+select,
+.login-input,
+.login-btn,
+.admin-logout,
+.tab-btn,
+.form-input,
+.form-select,
+.form-textarea,
+.queue-cap input,
+.btn-save,
+.btn-cancel,
+.btn-del-proj,
+.btn-del-ph,
+.btn-guardar-orden,
+.btn-descartar-orden,
+.btn-new-proj {
+  font-family:'Jost',sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🔐</div>
+    <div class="login-title">Panel Administrador</div>
+    <div class="login-sub">TecnoPatch — Gestión de Proyectos</div>
+    <input type="password" class="login-input" id="pwd-input" placeholder="Contraseña de acceso" autocomplete="off">
+    <button class="login-btn" onclick="checkLogin()">Entrar al panel</button>
+    <div class="login-error" id="login-error">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<header class="admin-header" id="admin-header" style="display:none">
+  <div class="admin-logo">
+    <span>⚙️</span><span>Admin TecnoPatch</span>
+    <span class="admin-badge">PRIVADO</span>
+  </div>
+  <div class="hdr-right">
+    <a href="proyectos.html" target="_blank" class="view-link">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Ver página pública
+    </a>
+    <button class="admin-logout" onclick="logout()">Salir</button>
+  </div>
+</header>
+
+<main class="admin-main" id="admin-main" style="display:none">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('subir')">📸 Subir fotos</button>
+    <button class="tab-btn" onclick="switchTab('proyectos')">🏗️ Gestionar proyectos</button>
+    <button class="tab-btn" onclick="switchTab('nuevo')">➕ Nuevo proyecto</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-subir">
+    <div class="sec-title">1 — Selecciona el proyecto</div>
+    <div class="proj-selector" id="proj-selector-upload"></div>
+    <div class="sec-title">2 — Arrastra o selecciona las fotos</div>
+    <div class="photos-dropzone" id="photos-dz" onclick="document.getElementById('photos-input').click()">
+      <div class="dz-icon">📷</div>
+      <div class="dz-title">Arrastra las fotos aquí</div>
+      <div class="dz-sub">JPG, PNG, WEBP — puedes seleccionar varias a la vez</div>
+      <span class="dz-btn">Seleccionar fotos</span>
+    </div>
+    <input type="file" id="photos-input" multiple accept="image/*" style="display:none">
+    <div id="queue-wrap" style="display:none">
+      <div class="sec-title">3 — Vista previa y captions (opcional)</div>
+      <div class="queue-grid" id="queue-grid"></div>
+      <div class="action-bar">
+        <div class="action-info" id="action-info">Selecciona un proyecto arriba</div>
+        <button class="btn-cancel" onclick="clearQueue()">Limpiar</button>
+        <button class="btn-save" id="btn-upload" onclick="uploadPhotos()" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Subir al proyecto
+        </button>
+      </div>
+      <div class="upload-progress" id="upload-progress">
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+        <div class="progress-label" id="progress-label">Subiendo...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-proyectos">
+    <div id="gallery-admin"><div style="color:var(--muted);text-align:center;padding:40px">Cargando proyectos...</div></div>
+  </div>
+
+  <div class="tab-panel" id="tab-nuevo">
+    <div class="sec-title">Datos del proyecto</div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">Nombre del proyecto *</label>
+        <input type="text" class="form-input" id="np-name" placeholder="Ej: Corporativo Las Fuentes">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ubicación</label>
+        <input type="text" class="form-input" id="np-location" placeholder="Ej: Zapopan, Jalisco">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de servicio</label>
+        <input type="text" class="form-input" id="np-type" placeholder="Ej: CCTV + Cableado Cat6">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Año</label>
+        <input type="text" class="form-input" id="np-year" placeholder="2025">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoría (para filtros)</label>
+        <select class="form-select" id="np-category">
+          <option value="corporativo">Corporativo</option>
+          <option value="residencial">Residencial</option>
+          <option value="cctv">CCTV</option>
+          <option value="cableado">Cableado</option>
+          <option value="acceso">Control de Acceso</option>
+          <option value="voip">Telefonía IP</option>
+          <option value="wifi">WiFi / Redes</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-textarea" id="np-description" placeholder="Breve descripción del proyecto realizado..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ícono (si no hay logo)</label>
+        <div class="emoji-picker" id="emoji-picker">
+          <button class="emoji-opt selected" data-emoji="🏢">🏢</button>
+          <button class="emoji-opt" data-emoji="🏠">🏠</button>
+          <button class="emoji-opt" data-emoji="🏭">🏭</button>
+          <button class="emoji-opt" data-emoji="✈️">✈️</button>
+          <button class="emoji-opt" data-emoji="🏥">🏥</button>
+          <button class="emoji-opt" data-emoji="🏫">🏫</button>
+          <button class="emoji-opt" data-emoji="🏪">🏪</button>
+          <button class="emoji-opt" data-emoji="🏗️">🏗️</button>
+          <button class="emoji-opt" data-emoji="🔒">🔒</button>
+          <button class="emoji-opt" data-emoji="📡">📡</button>
+          <button class="emoji-opt" data-emoji="🌐">🌐</button>
+          <button class="emoji-opt" data-emoji="🚗">🚗</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Logo del cliente</label>
+        <div class="logo-dropzone" id="logo-dz" onclick="document.getElementById('logo-input').click()">
+          <span style="font-size:24px">🖼️</span>
+          <span style="font-size:13px;color:var(--muted)">Arrastra el logo o haz clic</span>
+          <span style="font-size:11px;color:var(--muted)">PNG, JPG, SVG — fondo transparente ideal</span>
+        </div>
+        <input type="file" id="logo-input" accept="image/*" style="display:none">
+      </div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn-save" id="btn-create-proj" onclick="createProject()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Crear proyecto
+      </button>
+      <button class="btn-cancel" onclick="resetNewProjForm()">Limpiar</button>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PASSWORD='TecnoPatch2026';
+const SB_URL='https://lyfgbajkxzvhooerptcy.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5ZmdiYWpreHp2aG9vZXJwdGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MTM2NDYsImV4cCI6MjA5MTA4OTY0Nn0.uiYkalrrxhfYT29jDFSiAKhUWiL-UwLelEkCbO05nmc';
+const hdr={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
+
+let projects=[],photos=[],queue=[],logoFile=null,selectedEmoji='🏢',selectedUploadProjId=null;
+
+// ── LOGIN ────────────────────────────────────────────────────
+window.checkLogin=function(){
+  const v=document.getElementById('pwd-input').value;
+  if(v===PASSWORD){sessionStorage.setItem('tp_admin','1');showAdmin();}
+  else{document.getElementById('login-error').style.display='block';document.getElementById('pwd-input').value='';document.getElementById('pwd-input').focus();}
+};
+document.getElementById('pwd-input').addEventListener('keydown',e=>{if(e.key==='Enter')window.checkLogin();});
+window.logout=function(){sessionStorage.removeItem('tp_admin');location.reload();};
+function showAdmin(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('admin-header').style.display='flex';
+  document.getElementById('admin-main').style.display='block';
+  loadAll();
+}
+if(sessionStorage.getItem('tp_admin')==='1')showAdmin();
+
+// ── TABS ─────────────────────────────────────────────────────
+window.switchTab=function(tab){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['subir','proyectos','nuevo'][i]===tab));
+  document.querySelectorAll('.tab-panel').forEach((p,i)=>p.classList.toggle('active',['tab-subir','tab-proyectos','tab-nuevo'][i]==='tab-'+tab));
+  if(tab==='proyectos')renderGalleryAdmin();
+};
+
+// ── CARGA ────────────────────────────────────────────────────
+async function loadAll(){
+  try{
+    const[pr,ph]=await Promise.all([
+      fetch(`${SB_URL}/rest/v1/projects?select=*&order=orden.asc,created_at.asc`,{headers:hdr}),
+      fetch(`${SB_URL}/rest/v1/project_photos?select=*&order=orden.asc,created_at.asc`,{headers:hdr})
+    ]);
+    projects=await pr.json(); photos=await ph.json();
+    if(!Array.isArray(projects))projects=[];
+    if(!Array.isArray(photos))photos=[];
+    renderProjSelector();renderGalleryAdmin();
+  }catch(e){showToast('Error conectando con Supabase',true);}
+}
+
+// ── SELECTOR ─────────────────────────────────────────────────
+function renderProjSelector(){
+  const sel=document.getElementById('proj-selector-upload');
+  sel.innerHTML='';
+  if(!projects.length){sel.innerHTML='<p style="color:var(--muted);font-size:13px">No hay proyectos. Crea uno en "Nuevo proyecto".</p>';return;}
+  projects.forEach(p=>{
+    const count=photos.filter(ph=>ph.project_id===p.id).length;
+    const card=document.createElement('div');
+    card.className='proj-sel-card'+(selectedUploadProjId===p.id?' selected':'');
+    card.innerHTML=`<div class="proj-sel-icon">${p.icon||'🏢'}</div><div class="proj-sel-info"><div class="proj-sel-name">${p.name}</div><div class="proj-sel-count">${count} foto${count!==1?'s':''}</div></div><div class="proj-sel-check">✓</div>`;
+    card.onclick=()=>{selectedUploadProjId=p.id;renderProjSelector();updateActionBar();};
+    sel.appendChild(card);
+  });
+}
+function updateActionBar(){
+  const info=document.getElementById('action-info'),btn=document.getElementById('btn-upload');
+  const proj=projects.find(p=>p.id===selectedUploadProjId);
+  if(proj&&queue.length){info.innerHTML=`<strong>${queue.length} foto${queue.length>1?'s':''}</strong> listas → <strong>${proj.name}</strong>`;btn.disabled=false;}
+  else if(!proj){info.innerHTML='Selecciona un proyecto arriba';btn.disabled=true;}
+  else{info.innerHTML='Arrastra o selecciona las fotos para subir';btn.disabled=true;}
+}
+
+// ── DROPZONE FOTOS ───────────────────────────────────────────
+const photosDz=document.getElementById('photos-dz'),photosInput=document.getElementById('photos-input');
+photosDz.addEventListener('dragover',e=>{e.preventDefault();photosDz.classList.add('dragover');});
+photosDz.addEventListener('dragleave',()=>photosDz.classList.remove('dragover'));
+photosDz.addEventListener('drop',e=>{e.preventDefault();photosDz.classList.remove('dragover');handlePhotoFiles(e.dataTransfer.files);});
+photosInput.addEventListener('change',e=>handlePhotoFiles(e.target.files));
+function handlePhotoFiles(files){
+  Array.from(files).filter(f=>f.type.startsWith('image/')).forEach(file=>{
+    const r=new FileReader();
+    r.onload=e=>{queue.push({file,preview:e.target.result,caption:''});renderQueue();updateActionBar();};
+    r.readAsDataURL(file);
+  });
+}
+function renderQueue(){
+  const wrap=document.getElementById('queue-wrap'),grid=document.getElementById('queue-grid');
+  if(!queue.length){wrap.style.display='none';return;}
+  wrap.style.display='block';grid.innerHTML='';
+  queue.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='queue-item';
+    div.innerHTML=`<img src="${item.preview}" alt=""><button class="queue-rm" onclick="removeQueue(${i})">×</button><div class="queue-cap"><input type="text" placeholder="Caption (opcional)" value="${item.caption}" oninput="queue[${i}].caption=this.value"></div>`;
+    grid.appendChild(div);
+  });
+}
+window.removeQueue=function(i){queue.splice(i,1);renderQueue();updateActionBar();};
+window.clearQueue=function(){queue=[];photosInput.value='';renderQueue();updateActionBar();};
+
+// ── SUBIR FOTOS ──────────────────────────────────────────────
+window.uploadPhotos=async function(){
+  if(!selectedUploadProjId||!queue.length)return;
+  const btn=document.getElementById('btn-upload'),progress=document.getElementById('upload-progress'),
+        fill=document.getElementById('progress-fill'),label=document.getElementById('progress-label');
+  btn.disabled=true;progress.style.display='block';
+  const existingCount=photos.filter(p=>p.project_id===selectedUploadProjId).length;
+  let done=0;
+  for(const item of queue){
+    const ext=item.file.name.split('.').pop();
+    const path=`${selectedUploadProjId}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const upRes=await fetch(`${SB_URL}/storage/v1/object/project-photos/${path}`,{
+      method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':item.file.type},body:item.file
+    });
+    if(!upRes.ok){showToast('Error subiendo '+item.file.name,true);continue;}
+    await fetch(`${SB_URL}/rest/v1/project_photos`,{
+      method:'POST',headers:{...hdr,'Prefer':'return=minimal'},
+      body:JSON.stringify({project_id:selectedUploadProjId,url:`${SB_URL}/storage/v1/object/public/project-photos/${path}`,caption:item.caption,orden:existingCount+done})
+    });
+    done++;fill.style.width=Math.round((done/queue.length)*100)+'%';label.textContent=`Subiendo ${done} de ${queue.length}...`;
+  }
+  showToast(`✅ ${done} foto${done>1?'s':''} subidas`);
+  window.clearQueue();progress.style.display='none';fill.style.width='0%';btn.disabled=false;
+  await loadAll();
+};
+
+// ── DROPZONE LOGO ────────────────────────────────────────────
+const logoDz=document.getElementById('logo-dz'),logoInput=document.getElementById('logo-input');
+logoDz.addEventListener('dragover',e=>{e.preventDefault();logoDz.classList.add('dragover');});
+logoDz.addEventListener('dragleave',()=>logoDz.classList.remove('dragover'));
+logoDz.addEventListener('drop',e=>{e.preventDefault();logoDz.classList.remove('dragover');handleLogoFile(e.dataTransfer.files[0]);});
+logoInput.addEventListener('change',e=>handleLogoFile(e.target.files[0]));
+function handleLogoFile(file){
+  if(!file||!file.type.startsWith('image/'))return;
+  logoFile=file;const r=new FileReader();
+  r.onload=e=>{logoDz.innerHTML=`<img src="${e.target.result}" alt="Logo"><div class="logo-preview-name">${file.name}</div>`;};
+  r.readAsDataURL(file);
+}
+
+// ── EMOJI ────────────────────────────────────────────────────
+document.querySelectorAll('.emoji-opt').forEach(btn=>{
+  btn.addEventListener('click',()=>{document.querySelectorAll('.emoji-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedEmoji=btn.dataset.emoji;});
+});
+
+// ── CREAR PROYECTO ───────────────────────────────────────────
+window.createProject=async function(){
+  const name=document.getElementById('np-name').value.trim();
+  if(!name){document.getElementById('np-name').focus();showToast('El nombre es requerido',true);return;}
+  const btn=document.getElementById('btn-create-proj');
+  btn.disabled=true;btn.innerHTML='<span class="loading-mini"></span> Creando...';
+  let logoUrl=null;
+  if(logoFile){
+    const ext=logoFile.name.split('.').pop(),path=`logos/${Date.now()}.${ext}`;
+    const up=await fetch(`${SB_URL}/storage/v1/object/project-logos/${path}`,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':logoFile.type},body:logoFile});
+    if(up.ok)logoUrl=`${SB_URL}/storage/v1/object/public/project-logos/${path}`;
+  }
+  const res=await fetch(`${SB_URL}/rest/v1/projects`,{method:'POST',headers:{...hdr,'Prefer':'return=representation'},body:JSON.stringify({
+    name,location:document.getElementById('np-location').value.trim(),type:document.getElementById('np-type').value.trim(),
+    year:document.getElementById('np-year').value.trim()||new Date().getFullYear().toString(),
+    category:document.getElementById('np-category').value,description:document.getElementById('np-description').value.trim(),
+    icon:selectedEmoji,logo_url:logoUrl,orden:projects.length
+  })});
+  btn.disabled=false;btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Crear proyecto`;
+  if(res.ok){showToast(`✅ Proyecto "${name}" creado`);window.resetNewProjForm();await loadAll();window.switchTab('subir');}
+  else showToast('Error al crear el proyecto',true);
+};
+window.resetNewProjForm=function(){
+  ['np-name','np-location','np-type','np-year','np-description'].forEach(id=>document.getElementById(id).value='');
+  logoFile=null;logoDz.innerHTML=`<span style="font-size:24px">🖼️</span><span style="font-size:13px;color:var(--muted)">Arrastra el logo o haz clic</span><span style="font-size:11px;color:var(--muted)">PNG, JPG, SVG — fondo transparente ideal</span>`;
+  document.querySelectorAll('.emoji-opt').forEach((b,i)=>b.classList.toggle('selected',i===0));selectedEmoji='🏢';
+};
+
+// ── GALERÍA ADMIN ────────────────────────────────────────────
+function renderGalleryAdmin(){
+  const container=document.getElementById('gallery-admin');
+  if(!projects.length){container.innerHTML='<div style="text-align:center;padding:48px;color:var(--muted)">No hay proyectos. Crea el primero en "Nuevo proyecto".</div>';return;}
+  container.innerHTML='';
+  const addBtn=document.createElement('button');addBtn.className='btn-new-proj';addBtn.innerHTML='📸 Subir más fotos';addBtn.onclick=()=>window.switchTab('subir');
+  container.appendChild(addBtn);
+  projects.forEach(proj=>{
+    const projPhotos=photos.filter(ph=>ph.project_id===proj.id).sort((a,b)=>(a.orden??0)-(b.orden??0));
+    const block=document.createElement('div');block.className='proj-gallery-block';
+    const logoHTML=proj.logo_url?`<img src="${proj.logo_url}" alt="${proj.name}" class="pgh-logo">`:`<div class="pgh-icon">${proj.icon||'🏢'}</div>`;
+    block.innerHTML=`
+      <div class="pgh-header">
+        <div class="pgh-left">${logoHTML}<div><div class="pgh-name">${proj.name}</div><div class="pgh-meta">${projPhotos.length} foto${projPhotos.length!==1?'s':''} · ${proj.location||''} · ${proj.year||''}</div></div></div>
+        <div class="pgh-actions">
+          <div style="display:flex;gap:4px">
+            <button class="btn-del-proj" style="border:1px solid var(--border);background:transparent;color:var(--muted)" onclick="moveProject('${proj.id}',-1)" title="Subir">↑</button>
+            <button class="btn-del-proj" style="border:1px solid var(--border);background:transparent;color:var(--muted)" onclick="moveProject('${proj.id}',1)" title="Bajar">↓</button>
+          </div>
+          <button class="btn-del-proj" onclick="deleteProject('${proj.id}','${proj.name.replace(/'/g,"\\'")}')">🗑 Eliminar</button>
+        </div>
+      </div>
+      <div class="pgh-grid" id="pgh-${proj.id}"></div>
+      <div class="orden-save-bar" id="osb-${proj.id}">
+        <span>⚠️ Orden modificado —</span>
+        <button class="btn-guardar-orden" onclick="guardarOrden('${proj.id}')">💾 Guardar orden</button>
+        <button class="btn-descartar-orden" onclick="descartarOrden('${proj.id}')">Descartar</button>
+      </div>`;
+    container.appendChild(block);
+    const grid=block.querySelector(`#pgh-${proj.id}`);
+    if(!projPhotos.length){
+      grid.innerHTML='<div class="pgh-empty">Sin fotos aún. Ve a "Subir fotos".</div>';
+    } else {
+      projPhotos.forEach((photo,idx)=>{
+        const item=document.createElement('div');
+        item.className='pgh-photo';item.dataset.photoId=photo.id;item.draggable=true;
+        item.innerHTML=`<img src="${photo.url}" alt="${photo.caption||''}"><div class="pgh-order-badge">${idx+1}</div><div class="pgh-photo-overlay"><button class="btn-del-ph" onclick="deletePhoto('${photo.id}','${proj.id}')">🗑 Quitar</button></div>`;
+        grid.appendChild(item);
+      });
+      initDragDrop(grid,proj.id);
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  DRAG & DROP v2 — SWAP REAL
+//
+//  Problema del código anterior:
+//  1. addEventListener en cada item → dragend limpia la ref ANTES
+//     de que drop la use (race condition Chrome/Firefox)
+//  2. insertBefore condicional = desplazamiento, no swap
+//
+//  Solución:
+//  1. Event delegation EN EL GRID — todos los eventos en un solo listener
+//  2. ID guardado en dataTransfer (string, siempre disponible en drop)
+//  3. Swap real: guardar nextSibling de AMBOS antes de mover ninguno
+// ══════════════════════════════════════════════════════════════
+function initDragDrop(grid, projId) {
+
+  grid.addEventListener('dragstart', e => {
+    const card = e.target.closest('.pgh-photo');
+    if (!card) return;
+    // Guardar ID como string en dataTransfer — inmune a race conditions
+    e.dataTransfer.setData('text/plain', card.dataset.photoId);
+    e.dataTransfer.effectAllowed = 'move';
+    // rAF para que el navegador tome el snapshot antes de .dragging
+    requestAnimationFrame(() => card.classList.add('dragging'));
+  });
+
+  grid.addEventListener('dragend', e => {
+    const card = e.target.closest('.pgh-photo');
+    if (card) card.classList.remove('dragging');
+    grid.querySelectorAll('.swap-target').forEach(el => el.classList.remove('swap-target'));
+  });
+
+  grid.addEventListener('dragover', e => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const target = e.target.closest('.pgh-photo');
+    if (!target) return;
+    const srcId = e.dataTransfer.getData('text/plain');
+    if (target.dataset.photoId === srcId) return;
+    // Resaltar solo el target actual, quitar del resto
+    grid.querySelectorAll('.pgh-photo').forEach(el =>
+      el.classList.toggle('swap-target', el === target && !el.classList.contains('dragging'))
+    );
+  });
+
+  grid.addEventListener('dragleave', e => {
+    // Quitar resaltado solo si el mouse abandonó el grid completo
+    if (!grid.contains(e.relatedTarget)) {
+      grid.querySelectorAll('.swap-target').forEach(el => el.classList.remove('swap-target'));
+    }
+  });
+
+  grid.addEventListener('drop', e => {
+    e.preventDefault();
+    // Recuperar origen por ID — no por referencia (evita el bug)
+    const srcId  = e.dataTransfer.getData('text/plain');
+    const target = e.target.closest('.pgh-photo');
+    if (!target || target.dataset.photoId === srcId) return;
+
+    const srcEl = grid.querySelector(`[data-photo-id="${srcId}"]`);
+    if (!srcEl || srcEl === target) return;
+
+    // ── SWAP REAL ─────────────────────────────────────────────
+    // Guardamos los nextSibling ANTES de mover NINGUNO de los dos
+    // Si A está justo antes de B: A.nextSibling === B → usamos A para no crear un ciclo
+    const afterSrc = srcEl.nextSibling === target ? srcEl    : srcEl.nextSibling;
+    const afterTgt = target.nextSibling === srcEl  ? target   : target.nextSibling;
+
+    grid.insertBefore(srcEl, afterTgt);   // src va donde estaba target
+    grid.insertBefore(target, afterSrc);  // target va donde estaba src
+    // ──────────────────────────────────────────────────────────
+
+    // Limpiar estados CSS
+    target.classList.remove('swap-target');
+    srcEl.classList.remove('dragging');
+
+    // Actualizar todos los badges numéricos
+    grid.querySelectorAll('.pgh-photo').forEach((el, i) => {
+      const badge = el.querySelector('.pgh-order-badge');
+      if (badge) badge.textContent = i + 1;
+    });
+
+    // Flash de confirmación en ambas tarjetas
+    [srcEl, target].forEach(el => {
+      el.style.transition = 'transform .2s, box-shadow .2s';
+      el.style.transform  = 'scale(1.05)';
+      el.style.boxShadow  = '0 0 0 2px var(--cian)';
+      setTimeout(() => {
+        el.style.transform = '';
+        el.style.boxShadow = '';
+        setTimeout(() => { el.style.transition = ''; }, 210);
+      }, 210);
+    });
+
+    // Mostrar barra "Guardar orden"
+    const bar = document.getElementById('osb-' + projId);
+    if (bar) bar.classList.add('visible');
+  });
+}
+
+// ── GUARDAR ORDEN (paralelo, no secuencial) ──────────────────
+window.guardarOrden = async function(projId) {
+  const grid=document.getElementById('pgh-'+projId);
+  const items=[...grid.querySelectorAll('.pgh-photo')];
+  const btn=document.querySelector(`#osb-${projId} .btn-guardar-orden`);
+  btn.disabled=true;btn.innerHTML='<span class="loading-mini"></span> Guardando...';
+  await Promise.all(items.map((el,i)=>
+    fetch(`${SB_URL}/rest/v1/project_photos?id=eq.${el.dataset.photoId}`,{method:'PATCH',headers:hdr,body:JSON.stringify({orden:i})})
+  ));
+  showToast('✅ Orden guardado correctamente');
+  document.getElementById('osb-'+projId).classList.remove('visible');
+  btn.disabled=false;btn.innerHTML='💾 Guardar orden';
+  await loadAll();
+};
+
+window.descartarOrden=async function(projId){
+  document.getElementById('osb-'+projId).classList.remove('visible');
+  await loadAll();
+};
+
+// ── ELIMINAR FOTO ────────────────────────────────────────────
+window.deletePhoto=async function(photoId,projId){
+  if(!confirm('¿Eliminar esta foto?'))return;
+  const res=await fetch(`${SB_URL}/rest/v1/project_photos?id=eq.${photoId}`,{method:'DELETE',headers:hdr});
+  if(res.ok){photos=photos.filter(p=>p.id!==photoId);showToast('Foto eliminada');renderGalleryAdmin();renderProjSelector();}
+  else showToast('Error al eliminar',true);
+};
+
+// ── ELIMINAR PROYECTO ────────────────────────────────────────
+window.deleteProject=async function(projId,projName){
+  if(!confirm(`¿Eliminar "${projName}" y todas sus fotos?`))return;
+  const res=await fetch(`${SB_URL}/rest/v1/projects?id=eq.${projId}`,{method:'DELETE',headers:hdr});
+  if(res.ok){showToast(`Proyecto "${projName}" eliminado`);await loadAll();}
+  else showToast('Error al eliminar',true);
+};
+
+// ── REORDENAR PROYECTOS ──────────────────────────────────────
+window.moveProject=async function(projId,dir){
+  const idx=projects.findIndex(p=>p.id===projId),newIdx=idx+dir;
+  if(newIdx<0||newIdx>=projects.length)return;
+  const a=projects[idx],b=projects[newIdx];
+  await Promise.all([
+    fetch(`${SB_URL}/rest/v1/projects?id=eq.${a.id}`,{method:'PATCH',headers:hdr,body:JSON.stringify({orden:b.orden??newIdx})}),
+    fetch(`${SB_URL}/rest/v1/projects?id=eq.${b.id}`,{method:'PATCH',headers:hdr,body:JSON.stringify({orden:a.orden??idx})})
+  ]);
+  await loadAll();renderGalleryAdmin();
+};
+
+// ── TOAST ────────────────────────────────────────────────────
+function showToast(msg,isError=false){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast'+(isError?' error':'');
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);
+}
+</script>
+</body>
+</html>
