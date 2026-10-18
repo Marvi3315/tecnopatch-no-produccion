@@ -13,8 +13,8 @@
   --white: #eef2ff;
   --dim: #8896b3;
   --muted: #3d4a65;
-  --fd: 'Space Grotesk', 'Jost', sans-serif;
-  --fb: 'Inter', 'Jost', sans-serif;
+  --fd: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fb: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --fm: 'JetBrains Mono', ui-monospace, monospace;
   --ease: cubic-bezier(.16, 1, .3, 1);
   --easeb: cubic-bezier(.34, 1.56, .64, 1);
@@ -2688,3 +2688,27 @@ body.light .hero .sn {
     height: 52px;
   }
 }
+
+/* TIPOGRAFIA UNIFICADA (todas las paginas)
+   Titulos: Space Grotesk · Texto: Inter · Datos/etiquetas: JetBrains Mono */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--fb);
+  font-size: 1rem;
+  line-height: 1.65;
+  font-feature-settings: "kern", "liga", "calt";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: var(--fd);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+h1 { letter-spacing: -.03em; }
+h3, h4 { line-height: 1.2; }
+p, li { text-wrap: pretty; }
+button, input, select, textarea { font-family: var(--fb); }
+code, kbd, .mono { font-family: var(--fm); }

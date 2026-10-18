@@ -18,9 +18,9 @@
 <meta property="og:title" content="Proyectos &mdash; TecnoPatch Guadalajara">
 <meta property="og:description" content="Instalaciones de CCTV, cableado estructurado, control de acceso y m&aacute;s en Guadalajara, Jalisco.">
 <meta property="og:image" content="https://tecnopatch.com.mx/img/og-image.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 <style>
 :root {
@@ -42,7 +42,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased}
 .container{width:100%;max-width:var(--max);margin:0 auto;padding:0 5%}
 #nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:70px;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -74,18 +74,18 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);overfl
 .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:0 0 0 14px;border-left:3px solid var(--accent);font-size:12px;font-weight:700;color:rgba(238,242,255,.78);letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
 .eyebrow-dot{display:none}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-proj h1{font-family:'Jost',sans-serif;font-size:clamp(36px,5.5vw,80px);font-weight:700;line-height:1.04;letter-spacing:0;margin-bottom:18px;color:var(--text)}
+.hero-proj h1{font-family:var(--fd);font-size:clamp(36px,5.5vw,80px);font-weight:700;line-height:1.04;letter-spacing:0;margin-bottom:18px;color:var(--text)}
 .hero-proj h1 em{font-style:italic;color:var(--accent)}
 .hero-proj p{font-size:clamp(14px,1.5vw,17px);color:var(--sub);line-height:1.7;max-width:540px}
 .stats-bar{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:clamp(32px,5vh,56px) 0 0}
 .stat-item{flex:1;padding:clamp(16px,2.5vh,26px) clamp(16px,2vw,32px);border-right:1px solid var(--border);text-align:center}
 .stat-item:last-child{border-right:none}
-.stat-num{font-family:'Jost',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(--accent);letter-spacing:0;display:block;line-height:1}
+.stat-num{font-family:var(--fd);font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(--accent);letter-spacing:0;display:block;line-height:1}
 .stat-label{font-size:clamp(10px,1vw,12px);color:var(--sub);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;display:block}
 .filters-wrap{position:sticky;top:70px;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 5%}
 .filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .filter-lbl{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.1em;margin-right:4px;white-space:nowrap}
-.fbtn{padding:6px 16px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--sub);font-size:13px;font-weight:500;font-family:'Jost',sans-serif;cursor:pointer;transition:all .2s;white-space:nowrap}
+.fbtn{padding:6px 16px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--sub);font-size:13px;font-weight:500;font-family:var(--fb);cursor:pointer;transition:all .2s;white-space:nowrap}
 .fbtn:hover{border-color:var(--accent);color:var(--accent)}
 .fbtn.active{background:var(--accent);border-color:var(--accent);color:#0D1B2A;font-weight:700}
 .projects-section{padding:clamp(40px,6vh,70px) 5% clamp(60px,8vh,100px)}
@@ -110,7 +110,7 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);overfl
 .tag-alarma{background:rgba(255,100,50,.1);color:#FF6432;border:1px solid rgba(255,100,50,.3)}
 .tag-residencial{background:rgba(144,224,239,.1);color:var(--accentl);border:1px solid rgba(144,224,239,.2)}
 .tag-corporativo{background:rgba(255,183,3,.1);color:var(--gold);border:1px solid rgba(255,183,3,.3)}
-.proj-name{font-family:'Jost',sans-serif;font-size:clamp(20px,2.5vw,32px);font-weight:700;letter-spacing:0;margin-bottom:6px;line-height:1.1;color:var(--text)}
+.proj-name{font-family:var(--fd);font-size:clamp(20px,2.5vw,32px);font-weight:700;letter-spacing:0;margin-bottom:6px;line-height:1.1;color:var(--text)}
 .proj-desc{font-size:14px;color:var(--sub);line-height:1.65;max-width:520px}
 .proj-info{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0}
 .proj-info-row{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);white-space:nowrap}
@@ -140,7 +140,7 @@ body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);overfl
 .lb-prev{left:12px}.lb-next{right:12px}
 .lb-info{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:12px;color:rgba(255,255,255,.55);white-space:nowrap;background:rgba(0,0,0,.4);padding:4px 12px;border-radius:20px}
 .cta-section{padding:clamp(60px,8vh,90px) 5%;border-top:1px solid var(--border);text-align:center}
-.cta-section h2{font-family:'Jost',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:0;margin-bottom:14px;color:var(--text)}
+.cta-section h2{font-family:var(--fd);font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:0;margin-bottom:14px;color:var(--text)}
 .cta-section h2 em{font-style:italic;color:var(--accent)}
 .cta-section p{font-size:clamp(14px,1.4vw,16px);color:var(--sub);margin-bottom:30px}
 .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -208,14 +208,14 @@ html{scroll-behavior:auto}
   background:
     linear-gradient(90deg, rgba(2,5,9,.86) 0%, rgba(2,5,9,.64) 48%, rgba(2,5,9,.22) 100%),
     linear-gradient(0deg, rgba(2,5,9,.72) 0%, rgba(2,5,9,.18) 55%, rgba(2,5,9,.38) 100%),
-    url('img/hero-telecomunicaciones.png') center top / cover no-repeat;
+    url('img/hero-telecomunicaciones.webp') center top / cover no-repeat;
 }
 
 [data-theme="light"] .hero-proj {
   background:
     linear-gradient(90deg, rgba(240,244,255,.9) 0%, rgba(240,244,255,.62) 48%, rgba(240,244,255,.16) 100%),
     linear-gradient(0deg, rgba(240,244,255,.74) 0%, rgba(240,244,255,.12) 55%, rgba(240,244,255,.44) 100%),
-    url('img/hero-telecomunicaciones.png') center top / cover no-repeat;
+    url('img/hero-telecomunicaciones.webp') center top / cover no-repeat;
 }
 
 .hero-proj::before {
@@ -236,8 +236,8 @@ html{scroll-behavior:auto}
 .proj-name,
 .cta-section h2,
 .stat-num {
-  font-family:'Jost',sans-serif;
-  letter-spacing:0;
+  font-family:var(--fd);
+  letter-spacing:-.02em;
 }
 
 body,
@@ -250,7 +250,7 @@ select,
 .fbtn,
 .btn-p,
 .btn-s {
-  font-family:'Jost',sans-serif;
+  font-family:var(--fb);
 }
 
 .hero-proj h1 {
@@ -395,13 +395,40 @@ footer {
   .photos-masonry{columns:1}
 }
 </style>
+<style id="tp-refresh">
+/* Paleta y tipografia alineadas con la pagina principal */
+:root{--accent:#22e0c4;--accentl:#7ff0de;--accent-ink:#04120f;--bg:#020509}
+[data-theme="light"]{--accent:#0a8f7e;--accentl:#12b8a2;--accent-ink:#ffffff;--bg:#f0f4ff;--bg2:#e8edf8;--nav-bg:rgba(240,244,255,.92);--text:#0f172a;--sub:#475569;--muted:#64748b;--border:rgba(15,23,42,.12);--bgcard:rgba(255,255,255,.85)}
+[data-theme="light"] .filters-wrap{background:rgba(240,244,255,.92)}
+[data-theme="light"] .proj-name,[data-theme="light"] .proj-info-row strong{color:var(--text)}
+.ncta,.btn-p,.fbtn.active,.mnav a.ncta{color:var(--accent-ink)}
+.ncta:hover,.btn-p:hover{background:var(--accentl)}
+.logo-img{height:60px}
+@media(max-width:768px){.logo-img{height:52px}}
+.eyebrow{font-family:var(--fm);text-transform:none;letter-spacing:.02em;font-size:13px;font-weight:500}
+.filter-lbl{text-transform:none;letter-spacing:.02em;font-family:var(--fm);font-size:12px}
+.hero-proj{min-height:420px;position:relative}
+.hero-proj::after{content:"";position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(0deg,var(--bg),transparent);pointer-events:none}
+.hero-proj>*{position:relative;z-index:2}
+.hero-proj,[data-theme="light"] .hero-proj{background-blend-mode:normal}
+.hero-proj h1,.proj-name,.cta-section h2{letter-spacing:-.025em}
+.hero-proj h1 em,.cta-section h2 em{font-style:normal}
+.hero-proj h1 em{color:inherit}
+.proj-logo-icon{background:rgba(34,224,196,.1);color:var(--accent);font-family:var(--fm);font-size:16px;font-weight:600}
+[data-theme="light"] .proj-logo-icon{background:rgba(10,143,126,.08)}
+/* Galeria: cuadricula pareja, sin huecos de columnas */
+.photos-masonry{columns:auto!important;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.photos-masonry .photo-item{margin:0;aspect-ratio:4/3;break-inside:auto}
+.photos-masonry .photo-item img{height:100%}
+@media(max-width:560px){.photos-masonry{grid-template-columns:repeat(2,1fr);gap:6px}}
+</style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="logo">
-    <img src="img/favicon.png" alt="TecnoPatch" class="logo-img" onerror="this.style.display='none'">
+    <img src="img/logo-nav.png" alt="TecnoPatch" class="logo-img" onerror="this.style.display='none'">
   </a>
   <ul class="nul">
     <li><a href="index.html#servicios">Servicios</a></li>
@@ -434,13 +461,9 @@ footer {
 
 <!-- HERO -->
 <section class="hero-proj">
-  <div class="eyebrow"><span class="eyebrow-dot"></span>Casos reales &middot; Instalaciones documentadas</div>
+  <div class="eyebrow"><span class="eyebrow-dot"></span>Casos reales, instalaciones documentadas</div>
   <h1>Nuestro <em>trabajo</em><br>habla por s&iacute; solo</h1>
   <p>Instalaciones completadas para empresas, oficinas, comercios e industria en distintas zonas de M&eacute;xico. Cada proyecto bajo est&aacute;ndares internacionales, garant&iacute;a en mano de obra y soporte post-instalaci&oacute;n.</p>
-  <div class="stats-bar">
-    <div class="stat-item"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os de experiencia</span></div>
-    <div class="stat-item"><span class="stat-num">24/7</span><span class="stat-label">Soporte t&eacute;cnico</span></div>
-  </div>
 </section>
 
 <!-- FILTROS -->
