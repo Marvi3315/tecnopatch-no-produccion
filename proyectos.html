@@ -421,6 +421,8 @@ footer {
 .photos-masonry .photo-item{margin:0;aspect-ratio:4/3;break-inside:auto}
 .photos-masonry .photo-item img{height:100%}
 @media(max-width:560px){.photos-masonry{grid-template-columns:repeat(2,1fr);gap:6px}}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.filters-wrap{margin-top:70px}
 </style>
 </head>
 <body>
@@ -433,7 +435,6 @@ footer {
   <ul class="nul">
     <li><a href="index.html#servicios">Servicios</a></li>
     <li><a href="index.html#marcas">Marcas</a></li>
-    <li><a href="index.html#nosotros">Nosotros</a></li>
     <li><a href="proyectos.html" class="active">Proyectos</a></li>
     <li><a href="index.html#faq">FAQ</a></li>
   </ul>
@@ -453,18 +454,12 @@ footer {
 <div class="mnav" id="mnav">
   <a href="index.html#servicios" onclick="toggleMob()">Servicios</a>
   <a href="index.html#marcas" onclick="toggleMob()">Marcas</a>
-  <a href="index.html#nosotros" onclick="toggleMob()">Nosotros</a>
   <a href="proyectos.html" class="active" onclick="toggleMob()">Proyectos</a>
   <a href="index.html#faq" onclick="toggleMob()">FAQ</a>
   <a href="index.html#contacto" class="ncta" onclick="toggleMob()">Cotizar &rarr;</a>
 </div>
 
-<!-- HERO -->
-<section class="hero-proj">
-  <div class="eyebrow"><span class="eyebrow-dot"></span>Casos reales, instalaciones documentadas</div>
-  <h1>Nuestro <em>trabajo</em><br>habla por s&iacute; solo</h1>
-  <p>Instalaciones completadas para empresas, oficinas, comercios e industria en distintas zonas de M&eacute;xico. Cada proyecto bajo est&aacute;ndares internacionales, garant&iacute;a en mano de obra y soporte post-instalaci&oacute;n.</p>
-</section>
+<h1 class="sr-only">Proyectos e instalaciones de TecnoPatch</h1>
 
 <!-- FILTROS -->
 <div class="filters-wrap">
