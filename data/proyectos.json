@@ -1,1 +1,391 @@
-{"projects":[],"photos":[]}
+{
+  "projects": [
+    {
+      "id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "name": "Kelly Services Inc.",
+      "location": "MEXICO",
+      "type": "CCTV, CABLEADO ESTRUCTURADO",
+      "year": "2025 - 2026",
+      "description": "",
+      "category": "corporativo",
+      "icon": "🏢",
+      "logo_url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-logos/logos/1775517262288.png",
+      "created_at": "2026-04-06T23:14:22.239138+00:00",
+      "orden": 0
+    },
+    {
+      "id": "ca00903c-fcfa-42c7-b8c1-5c35b4d26625",
+      "name": "Casa Volcan Telica",
+      "location": "C. Volcán Telica 5109, Lomas del Paraíso ÌII, 44250 Guadalajara, Jal.",
+      "type": "CCTV, CABLEADO ESTRUCTURADO, WIFI",
+      "year": "2026",
+      "description": "",
+      "category": "residencial",
+      "icon": "🏠",
+      "logo_url": null,
+      "created_at": "2026-04-06T23:37:23.783463+00:00",
+      "orden": 1
+    },
+    {
+      "id": "01290c27-5239-4246-a6b6-8d61d63059a6",
+      "name": "Kelly Services Inc. Queretaro",
+      "location": "C. Tequisquiapan 102, Col. Ampliación, Cimatario, 76030 Santiago de Querétaro, Qro.",
+      "type": "CONTROL DE ACCESO",
+      "year": "2026",
+      "description": "",
+      "category": "acceso",
+      "icon": "🏢",
+      "logo_url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-logos/logos/1775714576299.jpg",
+      "created_at": "2026-04-09T06:02:58.453011+00:00",
+      "orden": 2
+    },
+    {
+      "id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "name": "Kelly Services Inc. El Salto, GDL.",
+      "location": "Industrial el Salto 4383, El Verde, 45694 San José el Verde, Jal.",
+      "type": "CCTV, RED DE DATOS, CONTROLES DE ACCESO",
+      "year": "2026",
+      "description": "",
+      "category": "corporativo",
+      "icon": "🏢",
+      "logo_url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-logos/logos/1776808155556.png",
+      "created_at": "2026-04-21T21:49:17.932655+00:00",
+      "orden": 3
+    },
+    {
+      "id": "3fdde0d2-f439-47b6-9701-d45176093497",
+      "name": "ALUCOLOR",
+      "location": "San Miguel 1550, La Florida, 45234 Zapopan, Jal.",
+      "type": "Mantenimiento a Site",
+      "year": "2026",
+      "description": "Se realizó un servicio integral de mantenimiento preventivo y correctivo en el site de telecomunicaciones corporativo de ALUCOLOR. El proyecto incluyó la limpieza profunda de equipos activos y pasivos, optimización y peinado de cableado estructurado mediante organizadores, etiquetado normativo de nodos y validación de conexiones. Con estas acciones, garantizamos la correcta disipación de calor en el rack, reducimos el riesgo de desconexiones accidentales y aseguramos la continuidad operativa y estabilidad de la red de la empresa.",
+      "category": "corporativo",
+      "icon": "🏢",
+      "logo_url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-logos/logos/1783738261449.jpeg",
+      "created_at": "2026-07-11T02:51:01.717553+00:00",
+      "orden": 4
+    }
+  ],
+  "photos": [
+    {
+      "id": "a5ed3f85-5c43-4c74-abb4-e0583b2eb062",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517337360-z8yn9epmpqo.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:38.155511+00:00",
+      "orden": 3
+    },
+    {
+      "id": "a9ad4d86-8b8a-4300-9cd9-8e7894a5b654",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517339029-pjbewzkecwa.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:39.163968+00:00",
+      "orden": 4
+    },
+    {
+      "id": "8ccb7771-858b-4959-ac7b-c92085261f31",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517339970-tyx6bbd310o.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:40.031781+00:00",
+      "orden": 2
+    },
+    {
+      "id": "4ae45b80-b319-42f4-9a1d-e5ebe0d79da6",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517340833-wottylfcdo9.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:41.078258+00:00",
+      "orden": 5
+    },
+    {
+      "id": "6a6b4f25-f864-4ddb-af7f-68bd34c27a0b",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517341890-meqyql8dt1.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:42.038668+00:00",
+      "orden": 1
+    },
+    {
+      "id": "026f284d-bcc2-43e3-b916-3ca23e839b59",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517342838-haj9f9q813g.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:42.890504+00:00",
+      "orden": 0
+    },
+    {
+      "id": "3f025649-ad31-4277-b0d5-e61c5e71c306",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517343702-2j4pdgaq2cj.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:43.782672+00:00",
+      "orden": 10
+    },
+    {
+      "id": "ff6cce8b-4bf4-4209-872d-3f72230bd306",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517344584-n54elyhr35d.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:44.629274+00:00",
+      "orden": 11
+    },
+    {
+      "id": "79420f89-834c-45c7-b468-e451260ffc55",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517345439-5f89p8elmm5.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:45.556794+00:00",
+      "orden": 9
+    },
+    {
+      "id": "2684f11c-5719-489b-ab9b-4934a13d3605",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517346365-cehw8sf8xfc.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:46.409826+00:00",
+      "orden": 6
+    },
+    {
+      "id": "b21e496b-4d13-4e30-a930-8d78081b3cac",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517347221-c56pdbjfyr.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:47.41461+00:00",
+      "orden": 7
+    },
+    {
+      "id": "39b0ed56-dfaa-412d-ba75-4b6e74230c2e",
+      "project_id": "98cf98ca-207a-4dcf-a20d-b05fce0bb24f",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/98cf98ca-207a-4dcf-a20d-b05fce0bb24f/1775517349248-vdhlo5mdoen.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:15:49.537076+00:00",
+      "orden": 8
+    },
+    {
+      "id": "c63e5864-f139-4a62-8152-ed245d735025",
+      "project_id": "ca00903c-fcfa-42c7-b8c1-5c35b4d26625",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/ca00903c-fcfa-42c7-b8c1-5c35b4d26625/1775518869705-14ywfcx4cyj.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:41:10.348324+00:00",
+      "orden": 1
+    },
+    {
+      "id": "40f7d441-45c9-40b4-8259-acd3ffff0234",
+      "project_id": "ca00903c-fcfa-42c7-b8c1-5c35b4d26625",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/ca00903c-fcfa-42c7-b8c1-5c35b4d26625/1775518871196-d6rtu2fui6j.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:41:11.224602+00:00",
+      "orden": 2
+    },
+    {
+      "id": "1b3d502c-a3dd-43f8-9067-cc870b52c1ad",
+      "project_id": "ca00903c-fcfa-42c7-b8c1-5c35b4d26625",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/ca00903c-fcfa-42c7-b8c1-5c35b4d26625/1775518872056-srcb6lroobq.jpeg",
+      "caption": "",
+      "created_at": "2026-04-06T23:41:12.094936+00:00",
+      "orden": 0
+    },
+    {
+      "id": "0b24e0a7-a2a0-4de3-8f13-a12c3f98e10a",
+      "project_id": "01290c27-5239-4246-a6b6-8d61d63059a6",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/01290c27-5239-4246-a6b6-8d61d63059a6/1775714602508-wif261oz2hd.jpg",
+      "caption": "",
+      "created_at": "2026-04-09T06:03:25.275089+00:00",
+      "orden": 0
+    },
+    {
+      "id": "8bc7ba7a-6a85-455e-84a8-eef093891824",
+      "project_id": "01290c27-5239-4246-a6b6-8d61d63059a6",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/01290c27-5239-4246-a6b6-8d61d63059a6/1775714604464-40ynhjiejp.jpg",
+      "caption": "",
+      "created_at": "2026-04-09T06:03:26.500629+00:00",
+      "orden": 1
+    },
+    {
+      "id": "356d700c-edb5-4cce-ae55-63766962fae8",
+      "project_id": "01290c27-5239-4246-a6b6-8d61d63059a6",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/01290c27-5239-4246-a6b6-8d61d63059a6/1775714605690-tpwynlqqsoe.jpg",
+      "caption": "",
+      "created_at": "2026-04-09T06:03:27.630026+00:00",
+      "orden": 2
+    },
+    {
+      "id": "66a34785-1821-4c9e-bc60-6a0789de313a",
+      "project_id": "01290c27-5239-4246-a6b6-8d61d63059a6",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/01290c27-5239-4246-a6b6-8d61d63059a6/1775714606812-uzxf7csxu.jpg",
+      "caption": "",
+      "created_at": "2026-04-09T06:03:28.864519+00:00",
+      "orden": 4
+    },
+    {
+      "id": "7b1ca8f1-a3f1-4410-8df2-dc5f8d0b8e4c",
+      "project_id": "01290c27-5239-4246-a6b6-8d61d63059a6",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/01290c27-5239-4246-a6b6-8d61d63059a6/1775714608066-yjlm6zcupbo.jpg",
+      "caption": "",
+      "created_at": "2026-04-09T06:03:30.95996+00:00",
+      "orden": 3
+    },
+    {
+      "id": "ae8d336c-276b-4a06-8f43-dce62668373c",
+      "project_id": "01290c27-5239-4246-a6b6-8d61d63059a6",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/01290c27-5239-4246-a6b6-8d61d63059a6/1775714610169-t9z4nt5ahl.jpg",
+      "caption": "",
+      "created_at": "2026-04-09T06:03:32.444956+00:00",
+      "orden": 5
+    },
+    {
+      "id": "7d645cba-9786-4278-96ac-9297eab7f2cf",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808287601-ywja1sa4eah.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:30.249768+00:00",
+      "orden": 18
+    },
+    {
+      "id": "fe1a687f-aa7f-432d-8ba4-08fed7bace11",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808289745-0mwokcubhuke.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:31.248226+00:00",
+      "orden": 13
+    },
+    {
+      "id": "12b2cea2-688c-46bf-b83a-239969ffb085",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808290638-terl2f038k.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:32.064485+00:00",
+      "orden": 17
+    },
+    {
+      "id": "a5cc4410-cd6a-461f-ad25-9dbde5f60bba",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808291433-a0xzwin2a6g.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:32.90278+00:00",
+      "orden": 6
+    },
+    {
+      "id": "ff4f54e9-7c13-4ce7-929b-dc41c0712161",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808292264-4dm47wuw112.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:33.625286+00:00",
+      "orden": 10
+    },
+    {
+      "id": "c7c5e733-8bd6-4fbe-b93a-72c5e67db0ba",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808292966-hg1flh0thpt.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:34.265993+00:00",
+      "orden": 16
+    },
+    {
+      "id": "34c7eaa7-1cf1-4a22-bea9-02c77236138e",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808293604-16huzn5jqw2.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:34.966717+00:00",
+      "orden": 15
+    },
+    {
+      "id": "00cdb2e4-a979-4ec6-873a-184779402204",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808295045-9owfwhc4pqi.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:36.426108+00:00",
+      "orden": 14
+    },
+    {
+      "id": "1835e001-4bc6-4365-9169-41bf12746524",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808295765-mqf1ytj49u.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:37.068278+00:00",
+      "orden": 12
+    },
+    {
+      "id": "7b12fad6-d9f6-4755-b313-17a76456c8de",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808296409-fmk75fhb30e.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:37.797283+00:00",
+      "orden": 7
+    },
+    {
+      "id": "5a70fc25-1a64-4f09-a747-bc16be9a955c",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808297143-mgyh4y5gq5.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:38.55712+00:00",
+      "orden": 5
+    },
+    {
+      "id": "838800f7-90c6-46e9-9537-5befb7cb661e",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808297950-sk4gv5au3p.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:39.393934+00:00",
+      "orden": 4
+    },
+    {
+      "id": "2208804b-cef9-487e-9604-4b33dadac159",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808298734-8x0o09lvj4p.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:40.301715+00:00",
+      "orden": 1
+    },
+    {
+      "id": "42921de0-bde1-4b83-86ed-0b01e18acf88",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808299642-xx2mzb9kv1.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:41.094071+00:00",
+      "orden": 8
+    },
+    {
+      "id": "42aa97e6-fc69-40df-8884-56087f8b8530",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808300464-1ty0is7ie9n.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:41.852941+00:00",
+      "orden": 0
+    },
+    {
+      "id": "097e677a-b745-4af7-ad19-d3b8113c2627",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808301197-j96gig0vdje.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:42.541146+00:00",
+      "orden": 11
+    },
+    {
+      "id": "cbab9aae-df82-4bf7-b777-b220f2af3187",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808301880-muezwnfnvub.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:43.502844+00:00",
+      "orden": 2
+    },
+    {
+      "id": "5393157e-1af2-4c81-8f68-050859a7c66b",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808302843-06i6oec7djpr.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:44.273708+00:00",
+      "orden": 3
+    },
+    {
+      "id": "cfe2f901-86ed-4bd0-9550-ec4b5e93f2b2",
+      "project_id": "c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee",
+      "url": "https://lyfgbajkxzvhooerptcy.supabase.co/storage/v1/object/public/project-photos/c6eb2e6f-0ca1-4211-a2b0-4e0f88fc63ee/1776808303613-bl6u17u805v.jpeg",
+      "caption": "",
+      "created_at": "2026-04-21T21:51:45.06855+00:00",
+      "orden": 9
+    }
+  ]
+}
