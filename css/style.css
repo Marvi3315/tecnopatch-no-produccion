@@ -2712,3 +2712,75 @@ h3, h4 { line-height: 1.2; }
 p, li { text-wrap: pretty; }
 button, input, select, textarea { font-family: var(--fb); }
 code, kbd, .mono { font-family: var(--fm); }
+
+/* CARRUSEL DE MARCAS (plano, bucle exacto, sin saltos) */
+.mqt {
+  gap: 0;
+  animation: mqsc 44s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes mqsc {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.bc {
+  justify-content: center;
+  width: 190px;
+  height: 84px;
+  margin-right: 12px;
+  padding: 0 1.4rem;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--dim);
+  transform: none;
+}
+
+.bc .bn {
+  font-family: var(--fd);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.bc.has-logo {
+  background: #f3f6fb;
+  border-color: transparent;
+}
+
+.bc img {
+  height: 34px;
+  max-width: 130px;
+  object-fit: contain;
+  mix-blend-mode: normal;
+  filter: grayscale(1);
+  opacity: .8;
+  transition: filter .3s, opacity .3s;
+}
+
+.bc:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+.bc:hover {
+  transform: none;
+  border-color: rgba(34, 224, 196, .45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mqt { animation: none; }
+  .mqw { overflow-x: auto; }
+}
+
+@media (max-width: 640px) {
+  .bc { width: 150px; height: 70px; }
+  .bc .bn { font-size: 1rem; }
+}
+
+/* Marcas con solo icono: icono + nombre */
+.bc.mark { gap: .7rem; }
+.bc.mark img { height: 30px; width: 30px; filter: none; opacity: .95; }
+body.light .bc.mark.inv img { filter: brightness(.12); }
