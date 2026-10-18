@@ -85,6 +85,54 @@
   line-height: 1.4;
 }
 
+.ei-enter {
+  margin-top: 1.6rem;
+  background: var(--accent);
+  color: #02130f;
+  border: 0;
+  font-family: var(--fb);
+  font-weight: 600;
+  font-size: .95rem;
+  padding: .85rem 1.7rem;
+  border-radius: 100px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity .8s var(--ease), transform .8s var(--ease), box-shadow .3s;
+}
+
+.ei-enter.vis {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  animation: eiPulse 2.6s ease-in-out 1s infinite;
+}
+
+.ei-enter:hover {
+  box-shadow: 0 0 0 6px rgba(34, 224, 196, .18);
+}
+
+.ei-enter span {
+  transition: transform .3s var(--ease);
+}
+
+.ei-enter:hover span {
+  transform: translateX(4px);
+}
+
+@keyframes eiPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 224, 196, .35); }
+  50% { box-shadow: 0 0 0 10px rgba(34, 224, 196, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ei-enter.vis { animation: none; }
+}
+
 .ei-skip {
   position: absolute;
   right: 24px;
@@ -127,6 +175,8 @@ body.light {
   --white: #0f172a;
   --dim: #4a5568;
   --muted: #94a3b8;
+  --accent: #0a8f7e;
+  --accent2: #087568;
 }
 
 body.light nav.on {
@@ -242,13 +292,13 @@ select {
 
 /* LOGO IMG */
 .logo-img {
-  height: 42px;
+  height: 52px;
   width: auto;
   object-fit: contain
 }
 
 .logo-img-ft {
-  height: 52px;
+  height: 60px;
   width: auto;
   object-fit: contain
 }
@@ -2597,5 +2647,44 @@ footer {
   .faq,
   .contact {
     padding: 4rem 5%;
+  }
+}
+
+/* AJUSTES OCT 2026: fade inferior del hero, etiquetas en modo claro, logo */
+.hero-shade,
+body.light .hero-shade {
+  background-blend-mode: normal;
+}
+
+.hero-shade::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22%;
+  background: linear-gradient(0deg, var(--bg) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+body.light .hero .sl {
+  color: #334155;
+}
+
+body.light .hero .sn {
+  color: #0f172a;
+}
+
+.logo-img {
+  height: 60px;
+}
+
+.logo-img-ft {
+  height: 68px;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 52px;
   }
 }

@@ -154,6 +154,7 @@ function counter(el, target, suffix, dur) {
 
 (function () {
     var stats = document.getElementById('sr');
+    if (!stats || !document.getElementById('c2')) return;
     if (!stats || !('IntersectionObserver' in window)) {
         counter(document.getElementById('c2'), 8, '+', 800);
         return;

@@ -86,6 +86,7 @@
     <div class="ei-text">
       <span class="ei-tag">TecnoPatch</span>
       <p class="ei-line">Desde Guadalajara, conectamos cada punto con el resto del mundo</p>
+      <button type="button" class="ei-enter" id="eiEnter">Entrar al sitio <span aria-hidden="true">&rarr;</span></button>
     </div>
     <button type="button" class="ei-skip" id="eiSkip">Omitir <span aria-hidden="true">&rarr;</span></button>
   </div>
@@ -136,6 +137,8 @@
 
   <section class="hero" id="inicio">
     <picture class="hero-media" aria-hidden="true">
+      <source media="(max-width: 900px)" srcset="img/hero-telecomunicaciones-1200.webp" type="image/webp">
+      <source srcset="img/hero-telecomunicaciones.webp" type="image/webp">
       <img src="img/hero-telecomunicaciones.png" alt="" fetchpriority="high">
     </picture>
     <div class="hero-shade"></div>
@@ -150,10 +153,6 @@
       <div class="hbtns">
         <a href="#contacto" class="bw">Solicitar Cotizaci&oacute;n</a>
         <a href="#servicios" class="bg">Explorar Servicios &darr;</a>
-      </div>
-      <div class="stats" id="sr">
-        <div class="si"><span class="sn" id="c2">8+</span><span class="sl">A&ntilde;os de experiencia</span></div>
-        <div class="si"><span class="sn">24/7</span><span class="sl">Soporte t&eacute;cnico</span></div>
       </div>
     </div>
   </section>
@@ -631,8 +630,21 @@
   </a>
 
 
-  <script src="js/vendor/three.min.js"></script>
-  <script src="js/earth-intro.js"></script>
+  <script>
+    /* Three.js (~600 KB) solo se descarga si la intro 3D va a correr */
+    (function () {
+      var seen = false;
+      try { seen = sessionStorage.getItem('tpEarthIntroSeen') === '1'; } catch (e) { }
+      var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function add(src, cb) {
+        var s = document.createElement('script');
+        s.src = src; s.onload = s.onerror = cb || null;
+        document.body.appendChild(s);
+      }
+      if (seen || rm) add('js/earth-intro.js');
+      else add('js/vendor/three.min.js', function () { add('js/earth-intro.js'); });
+    })();
+  </script>
   <script src="js/main.js"></script>
 </body>
 
