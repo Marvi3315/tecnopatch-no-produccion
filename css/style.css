@@ -2784,3 +2784,21 @@ code, kbd, .mono { font-family: var(--fm); }
 .bc.mark { gap: .7rem; }
 .bc.mark img { height: 30px; width: 30px; filter: none; opacity: .95; }
 body.light .bc.mark.inv img { filter: brightness(.12); }
+
+/* Logos reales (mismas marcas que Conmutadores GDL) */
+.bc.has-logo img {
+  height: auto;
+  width: auto;
+  max-height: 40px;
+  max-width: 130px;
+}
+
+.bc.mark.has-logo img { height: 30px; width: 30px; max-height: none; }
+.bc.mark.has-logo .bn { color: #0f172a; }
+.bc.mark.inv img { filter: brightness(.12); opacity: 1; }
+.bc.has-logo:hover { background: #ffffff; }
+
+body.light .bc.has-logo {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, .12);
+}
