@@ -2802,3 +2802,12 @@ body.light .bc.has-logo {
   background: #ffffff;
   border-color: rgba(15, 23, 42, .12);
 }
+
+/* Anti-desborde horizontal en móvil (los reveal laterales ensanchaban el viewport) */
+html{overflow-x:hidden;max-width:100%}
+body{overflow-x:clip;max-width:100%}
+section,footer,header,main{overflow-x:clip}
+
+/* Móviles muy angostos: evita que palabras largas del hero se corten */
+.hero h1{overflow-wrap:anywhere;hyphens:auto}
+@media (max-width:400px){.hero h1{font-size:clamp(1.7rem,8.4vw,2.15rem)}}
