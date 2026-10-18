@@ -1,0 +1,48 @@
+name: Supabase keep-alive y respaldo
+
+# Evita que el proyecto gratis de Supabase se pause por inactividad
+# y guarda una copia de los proyectos en data/proyectos.json.
+on:
+  schedule:
+    - cron: "17 14 */2 * *"   # cada 2 dias
+  workflow_dispatch: {}        # boton "Run workflow" para probarlo a mano
+
+permissions:
+  contents: write
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    env:
+      SB_URL: https://lyfgbajkxzvhooerptcy.supabase.co
+      # Llave anon (publica, ya esta en proyectos.html). Nunca pongas aqui la service_role.
+      SB_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5ZmdiYWpreHp2aG9vZXJwdGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MTM2NDYsImV4cCI6MjA5MTA4OTY0Nn0.uiYkalrrxhfYT29jDFSiAKhUWiL-UwLelEkCbO05nmc
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Consultar Supabase (mantiene el proyecto activo)
+        run: |
+          set -e
+          mkdir -p data
+          curl -sS --fail --retry 3 --max-time 30 \
+            "$SB_URL/rest/v1/projects?select=*&order=orden.asc,created_at.asc" \
+            -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -o /tmp/projects.json
+          curl -sS --fail --retry 3 --max-time 30 \
+            "$SB_URL/rest/v1/project_photos?select=*&order=created_at.asc" \
+            -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -o /tmp/photos.json
+          jq -e 'type=="array"' /tmp/projects.json >/dev/null
+          jq -e 'type=="array"' /tmp/photos.json >/dev/null
+          jq -n --slurpfile p /tmp/projects.json --slurpfile f /tmp/photos.json \
+            '{projects:$p[0], photos:$f[0]}' > data/proyectos.json
+
+      - name: Guardar respaldo si cambio
+        run: |
+          if [ -n "$(git status --porcelain data/proyectos.json)" ]; then
+            git config user.name "github-actions"
+            git config user.email "actions@users.noreply.github.com"
+            git add data/proyectos.json
+            git commit -m "chore: actualizar respaldo de proyectos"
+            git push
+          else
+            echo "Sin cambios en los proyectos."
+          fi

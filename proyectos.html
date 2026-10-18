@@ -559,22 +559,41 @@ const TAG_CLASS = {
 };
 
 /* â”€â”€â”€ CARGA DATOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+async function fetchJson(url, ms) {
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), ms);
+  try {
+    const r = await fetch(url, { headers: HDR, signal: ctl.signal });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    if (!Array.isArray(d)) throw new Error('Respuesta invalida');
+    return d;
+  } finally { clearTimeout(t); }
+}
+
 async function loadData() {
   try {
-    const [pr, ph] = await Promise.all([
-      fetch(`${SB_URL}/rest/v1/projects?select=*&order=orden.asc,created_at.asc`, { headers: HDR }),
-      fetch(`${SB_URL}/rest/v1/project_photos?select=*&order=created_at.asc`, { headers: HDR })
+    /* 1) Datos en vivo desde Supabase */
+    [allProjects, allPhotos] = await Promise.all([
+      fetchJson(`${SB_URL}/rest/v1/projects?select=*&order=orden.asc,created_at.asc`, 8000),
+      fetchJson(`${SB_URL}/rest/v1/project_photos?select=*&order=created_at.asc`, 8000)
     ]);
-    allProjects = await pr.json();
-    allPhotos   = await ph.json();
-    if (!Array.isArray(allProjects)) allProjects = [];
-    if (!Array.isArray(allPhotos))   allPhotos   = [];
-    renderProjects();
-  } catch(e) {
-    console.error('Error cargando proyectos:', e);
+  } catch (e) {
+    /* 2) Respaldo: copia estatica (Supabase pausado o sin respuesta) */
+    console.warn('Supabase no respondio, usando respaldo estatico:', e);
+    try {
+      const r = await fetch('data/proyectos.json', { cache: 'no-cache' });
+      const d = await r.json();
+      allProjects = Array.isArray(d.projects) ? d.projects : [];
+      allPhotos   = Array.isArray(d.photos)   ? d.photos   : [];
+    } catch (e2) { allProjects = []; allPhotos = []; }
+  }
+  if (allProjects.length === 0) {
     document.getElementById('projects-container').innerHTML =
       '<div class="empty-state"><p>Error al cargar proyectos. Intenta recargar la p&aacute;gina.</p></div>';
+    return;
   }
+  renderProjects();
 }
 
 /* â”€â”€â”€ RENDER PROYECTOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
